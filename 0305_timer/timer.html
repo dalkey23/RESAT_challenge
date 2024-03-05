@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>카운트다운 타이머</title>
+</head>
+<body>
+
+<div id="inputArea">
+    <input type="number" id="hours" placeholder="시간" min="0" max="23">
+    <input type="number" id="minutes" placeholder="분" min="0" max="59">
+    <input type="number" id="seconds" placeholder="초" min="0" max="59">
+    <button onclick="startTimer()">START</button>
+</div>
+
+<div id="timer" style="display: none;"></div>
+
+<button onclick="stopTimer()">STOP</button>
+<button onclick="resetTimer()">RESET</button>
+
+<script>
+let timerInterval;
+let hoursInput = document.getElementById('hours');
+let minutesInput = document.getElementById('minutes');
+let secondsInput = document.getElementById('seconds');
+let timerDisplay = document.getElementById('timer');
+
+function startTimer() {
+    let hours = parseInt(hoursInput.value) || 0;
+    let minutes = parseInt(minutesInput.value) || 0;
+    let seconds = parseInt(secondsInput.value) || 0;
+
+    let totalSeconds = hours * 3600 + minutes * 60 + seconds;
+
+    if (totalSeconds <= 0) {
+        alert("입력된 시간이 없습니다.");
+        return;
+    }
+
+    document.getElementById('inputArea').style.display = 'none';
+    timerDisplay.style.display = 'block';
+
+    timerInterval = setInterval(() => {
+        if (totalSeconds <= 0) {
+            clearInterval(timerInterval);
+            timerDisplay.textContent = '시간 종료';
+            document.getElementById('inputArea').style.display = 'block';
+            timerDisplay.style.display = 'none';
+            return;
+        }
+
+        let hoursLeft = Math.floor(totalSeconds / 3600);
+        let minutesLeft = Math.floor((totalSeconds % 3600) / 60);
+        let secondsLeft = totalSeconds % 60;
+
+        timerDisplay.textContent = `${hoursLeft.toString().padStart(2, '0')}:${minutesLeft.toString().padStart(2, '0')}:${secondsLeft.toString().padStart(2, '0')}`;
+        totalSeconds--;
+    }, 1000);
+}
+
+function stopTimer() {
+    clearInterval(timerInterval);
+}
+
+function resetTimer() {
+    clearInterval(timerInterval);
+    hoursInput.value = '';
+    minutesInput.value = '';
+    secondsInput.value = '';
+    document.getElementById('inputArea').style.display = 'block';
+    timerDisplay.style.display = 'none';
+}
+</script>
+
+</body>
+</html>
