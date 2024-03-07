@@ -35,3 +35,51 @@
     padding: 10px;
     border: 1px solid #ccc;
 }
+
+.day:hover {
+    background-color: #e0e0e0;
+    cursor: pointer;
+}
+
+#modal {
+    display: none;
+    position: fixed;
+    top: 25%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+.modal-content {
+    padding: 20px;
+    background-color: #fefefe;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden; 
+}
+
+.modal-content textarea {
+    width: calc(100% - 40px); 
+    height: 100px; 
+    margin-bottom: 10px; 
+}
+
+.modal-buttons {
+    text-align: right;
+    margin-top: 10px;
+}
+
+.modal-buttons button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.close {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 3px;
+}

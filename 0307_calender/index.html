@@ -13,6 +13,17 @@
             <button class="next" onclick="nextMonth()">&gt;</button>
             <div class="days"></div>
         </div>
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <textarea id="memoInput" rows="4" cols="50"></textarea>
+                <div class="modal-buttons">
+                    <button class="close" onclick="closeModal()">Close</button>
+                    <button onclick="saveMemo()">Save</button>
+                </div>
+            </div>
+        </div>
+    
         <script src="script.js"></script>
     </body>
 </html>
