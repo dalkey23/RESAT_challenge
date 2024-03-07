@@ -1,0 +1,37 @@
+.calendar {
+    width: 300px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.prev, .next {
+    background-color: #f4f4f4;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    vertical-align: middle;
+}
+
+#month-year {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-top: 20px;
+}
+
+.day-header {
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f4f4f4;
+}
+
+.day {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
