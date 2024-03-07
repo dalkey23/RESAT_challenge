@@ -71,9 +71,10 @@ function closeModal() {
 function saveMemo() {
     const memoInput = document.getElementById("memoInput");
     const memo = memoInput.value.trim();
+    const activeDay = document.querySelector(".day.active");
 
     if (memo !== "") {
-        const activeDay = document.querySelector(".day.active");
+        
         if (activeDay) {
             const memoData = localStorage.getItem(activeDay.textContent);
             if (memoData) {
@@ -81,13 +82,16 @@ function saveMemo() {
             }
 
             localStorage.setItem(activeDay.textContent, JSON.stringify([memo]));
+            activeDay.classList.add("memo");
 
             closeModal();
         } else {
             alert("날짜를 선택하세요!");
         }
     } else {
-        alert("메모를 입력하세요!");
+        localStorage.removeItem(activeDay.textContent);
+        activeDay.classList.remove("memo");
+        closeModal();
     }
 }
 
@@ -110,3 +114,21 @@ function updateMemoInput(date) {
     const memoInput = document.getElementById("memoInput");
     memoInput.value = memoData ? JSON.parse(memoData).join("\n") : "";
 }
+
+// 달력에 메모가 있는 날짜에 배경색 적용
+function highlightMemoDates() {
+    const days = document.querySelectorAll(".day");
+    days.forEach((day) => {
+        const memoData = localStorage.getItem(day.textContent);
+        if (memoData) {
+            day.classList.add("memo");
+        } else {
+            day.classList.remove("memo");
+        }
+    });
+}
+
+// 페이지 로드 시 메모가 있는 날짜에 배경색 적용
+document.addEventListener('DOMContentLoaded', function() {
+    highlightMemoDates();
+});
